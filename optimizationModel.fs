@@ -6,12 +6,12 @@ open MathNet.Numerics.Optimization
 open MathNet.Numerics.LinearAlgebra
 open PortfolioOptimization
 open SecuritiesTypes
-open SecuritiesAccess 
+open DataAccess 
 
 
-module OptimizationModel  = 
+module OptimizationModels  = 
 
-    let meanVariancePortfolio (securitiesList:Securities) (startDate:string) (endDate:string)  = 
+    let maximumSharpRatioPortfolio (securitiesList:Securities) (startDate:string) (endDate:string)  = 
 
         let assetReturns = getSecuritiesData securitiesList startDate endDate
         let securities = securitiesList.Security
@@ -59,11 +59,10 @@ module OptimizationModel  =
         let initialWeights = List.replicate n (1.0/float n) 
 
         let srp = BfgsFindMinimum sharpRatio initialWeights
-        let weights = Seq.map(fun x -> x/Seq.sum(srp))srp |> Seq.toList      
-        //let outPut = List.zip (securities |> Array.toList) (weights |> List.map(fun x -> x * 100.0)) |> List.sortByDescending snd
+        let weights = Seq.map(fun x -> x/Seq.sum(srp))srp |> Seq.toList              
         let outPut = List.map2(fun x y ->  {Security = x ; weight = y}) (securities |> Array.toList) (weights |> List.map(fun x -> x * 100.0))
         outPut
-
+        
 
 
 

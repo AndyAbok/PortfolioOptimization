@@ -5,21 +5,19 @@ open System.IO
 open FSharp.Data
 open SecuritiesTypes
 
-module SecuritiesAccess = 
+module DataAccess = 
 
-    // let getSecurities = 
-    //     [|"Safaricom Ltd Ord 0.05";"Kenya Commercial Bank Ltd Ord 1.00";
-    //     "East African Breweries Ltd Ord 2.00";"Equity Bank Ltd Ord 0.50";
-    //     "Kenya Power Lighting Co Ltd Ord 20.00" ;"Co-operative Bank of Kenya Ltd Ord 1.00"
-    //     |]
-    // let getSecurities = 
-    //     [|"Accelerate Property Fund Limited"; "Deneb Investments Ltd";"British American Tobacco Plc";"Absa Group Limited";
-    //     "Dipula Income Fund B";"African Dawn Capital Ltd";"Capitec Bank Holdings Limited"|]
+    let filePath = System.IO.Path.GetFullPath("JohannesburgStockExchangeData.csv")            
+    let equitiesPriceData = CsvFile.Load(filePath)    
+
+    let getSecurities (startDate:string) (endDate:string) =
+        equitiesPriceData.Rows
+        |> Seq.filter(fun row -> row.["MarketDate"].AsDateTime() >= (DateTime.Parse(startDate)) && row.["MarketDate"].AsDateTime() < (DateTime.Parse(endDate))) 
+        |> Seq.map(fun rows -> rows.["Name"])
+        |> Seq.distinct
+        |> Seq.toArray
 
     let getSecuritiesData (securitiesList:Securities) (startDate:string) (endDate:string) = 
-
-        let filePath = System.IO.Path.GetFullPath("JohannesburgStockExchangeData.csv")            
-        let equitiesPriceData = CsvFile.Load(filePath) 
 
         let securities = securitiesList.Security
 
@@ -31,8 +29,7 @@ module SecuritiesAccess =
             |> Seq.toList
 
         let priecesData =  [for i in 0 .. securities.Length-1 do getSecurityData i]
-        //List.map(List.length)priecesData 
-
+       
         let returnsFunction inputPrices = 
             let pricesToSeq =  List.toSeq inputPrices
             pricesToSeq
@@ -43,8 +40,22 @@ module SecuritiesAccess =
         let assetReturns = List.map(returnsFunction)priecesData
         assetReturns
 
+    let getInputData (securitiesList:Securities option) (startDate:string) (endDate:string)  = 
 
+        let securities = 
+            match securitiesList with 
+            |Some securitiesList -> securitiesList.Security
+            |None -> getSecurities startDate endDate
 
+        let getInputData index  = 
+            equitiesPriceData.Rows
+            |> Seq.filter(fun row -> row.["Name"]  = securities.[index])   
+            |> Seq.filter(fun row -> row.["MarketDate"].AsDateTime() >= (DateTime.Parse(startDate)) && row.["MarketDate"].AsDateTime() < (DateTime.Parse(endDate)))     
+            |> Seq.map(fun row -> {Value = row.["MarketPrice"].AsDecimal() ;Date = row.["MarketDate"].AsDateTime()})
+            |> Seq.toArray 
+
+        let InputData =  [for i in 0 .. securities.Length-1 do {Name = securities.[i] ;Prices =  getInputData i}]
+        InputData
 
 
 

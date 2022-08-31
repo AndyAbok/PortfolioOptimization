@@ -17,7 +17,7 @@ type OptimizedWeights =
 
 type Securities =
     {
-        Security : string array
+        Security : string array  
     }
 
 
