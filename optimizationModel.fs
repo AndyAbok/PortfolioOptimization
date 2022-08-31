@@ -11,9 +11,9 @@ open SecuritiesAccess
 
 module OptimizationModel  = 
 
-    let meanVariancePortfolio (securitiesList:Securities) = 
+    let meanVariancePortfolio (securitiesList:Securities) (startDate:string) (endDate:string)  = 
 
-        let assetReturns = getSecuritiesData securitiesList
+        let assetReturns = getSecuritiesData securitiesList startDate endDate
         let securities = securitiesList.Name
 
         if not <| (List.map  List.length assetReturns |> List.pairwise |> List.forall (fun (a,b) -> a = b))  then

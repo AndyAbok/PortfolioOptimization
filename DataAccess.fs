@@ -16,7 +16,7 @@ module SecuritiesAccess =
     //     [|"Accelerate Property Fund Limited"; "Deneb Investments Ltd";"British American Tobacco Plc";"Absa Group Limited";
     //     "Dipula Income Fund B";"African Dawn Capital Ltd";"Capitec Bank Holdings Limited"|]
 
-    let getSecuritiesData (securitiesList:Securities)  = 
+    let getSecuritiesData (securitiesList:Securities) (startDate:string) (endDate:string) = 
 
         let filePath = System.IO.Path.GetFullPath("JohannesburgStockExchangeData.csv")            
         let equitiesPriceData = CsvFile.Load(filePath) 
@@ -26,7 +26,7 @@ module SecuritiesAccess =
         let getSecurityData index  = 
             equitiesPriceData.Rows
             |> Seq.filter(fun row -> row.["Name"]  = securities.[index])   
-            |> Seq.filter(fun row -> row.["MarketDate"].AsDateTime() >= (DateTime(2018,01, 01)) && row.["MarketDate"].AsDateTime() < (DateTime(2022,01,22)))     
+            |> Seq.filter(fun row -> row.["MarketDate"].AsDateTime() >= (DateTime.Parse(startDate)) && row.["MarketDate"].AsDateTime() < (DateTime.Parse(endDate)))     
             |> Seq.map(fun row -> row.["MarketPrice"].AsFloat())
             |> Seq.toList
 
