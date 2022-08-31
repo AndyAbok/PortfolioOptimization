@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\F# deep dives\\portfolioOptimizationApi\\portfolioOptimizationApi.fsproj": {}
+    "E:\\git hub repo\\PortfolioOptimization\\portfolioOptimizationApi.fsproj": {}
   },
   "projects": {
-    "D:\\Projects\\F# deep dives\\portfolioOptimizationApi\\portfolioOptimizationApi.fsproj": {
+    "E:\\git hub repo\\PortfolioOptimization\\portfolioOptimizationApi.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\F# deep dives\\portfolioOptimizationApi\\portfolioOptimizationApi.fsproj",
+        "projectUniqueName": "E:\\git hub repo\\PortfolioOptimization\\portfolioOptimizationApi.fsproj",
         "projectName": "portfolioOptimizationApi",
-        "projectPath": "D:\\Projects\\F# deep dives\\portfolioOptimizationApi\\portfolioOptimizationApi.fsproj",
+        "projectPath": "E:\\git hub repo\\PortfolioOptimization\\portfolioOptimizationApi.fsproj",
         "packagesPath": "C:\\Users\\andrewa\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\F# deep dives\\portfolioOptimizationApi\\obj\\",
+        "outputPath": "E:\\git hub repo\\PortfolioOptimization\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

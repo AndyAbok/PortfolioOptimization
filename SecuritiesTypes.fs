@@ -15,4 +15,9 @@ type OptimizedWeights =
       weight : float
     }
 
+type Securities =
+    {
+        Name : string array
+    }
+
 

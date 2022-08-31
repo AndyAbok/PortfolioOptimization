@@ -3,10 +3,17 @@ module Routing
 open Giraffe
 open Microsoft.AspNetCore.Http
 open PortfolioOptimization
+open OptimizationModel 
+open SecuritiesTypes 
 
-let viewOptimizedResults (next: HttpFunc) (ctx : HttpContext) =
-    let optimizedPortfolio = OptimizationModel.meanVariancePortfolio
-    json optimizedPortfolio next ctx
+
+let viewOptimizedResults : HttpHandler   =
+    fun (next : HttpFunc) (ctx : HttpContext) -> 
+        task {
+              let! modelparams = ctx.BindJsonAsync<Securities>()                 
+              let optimizedPortfolio = meanVariancePortfolio modelparams
+              return! json optimizedPortfolio next ctx
+        }
 
 let routes: HttpFunc -> HttpFunc =
     choose [

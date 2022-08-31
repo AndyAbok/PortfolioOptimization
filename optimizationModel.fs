@@ -6,13 +6,15 @@ open MathNet.Numerics.Optimization
 open MathNet.Numerics.LinearAlgebra
 open PortfolioOptimization
 open SecuritiesTypes
+open SecuritiesAccess 
+
 
 module OptimizationModel  = 
 
-    let meanVariancePortfolio = 
+    let meanVariancePortfolio (securitiesList:Securities) = 
 
-        let assetReturns = PortfolioOptimization.SecuritiesAccess.getSecuritiesData
-        let securities = PortfolioOptimization.SecuritiesAccess.getSecurities
+        let assetReturns = getSecuritiesData securitiesList
+        let securities = securitiesList.Name
 
         if not <| (List.map  List.length assetReturns |> List.pairwise |> List.forall (fun (a,b) -> a = b))  then
             printfn "Asset Returns List of Lists has lengths of %A - All Lenghts Should be equal" (List.map List.length assetReturns) 

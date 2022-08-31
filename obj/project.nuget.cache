@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O9xL7LYf3W1XvMC7/7U9JFUqV7VPxaC1umkPPfpEFW3SBJC4ck3WxvyLXywdXGrgsacqPHCRsn69r2vnUQnAVw==",
+  "dgSpecHash": "NWPpGJNN4eKCsSOv1t6t6nytJPCyc7vxaDm+ukcMxTLguUEuLLpyFTlIodgtshjRazo1TUiSMOklgGWSFCjqGg==",
   "success": true,
-  "projectFilePath": "D:\\Projects\\F# deep dives\\portfolioOptimizationApi\\portfolioOptimizationApi.fsproj",
+  "projectFilePath": "E:\\git hub repo\\PortfolioOptimization\\portfolioOptimizationApi.fsproj",
   "expectedPackageFiles": [
     "C:\\Users\\andrewa\\.nuget\\packages\\fsharp.core\\6.0.4\\fsharp.core.6.0.4.nupkg.sha512",
     "C:\\Users\\andrewa\\.nuget\\packages\\fsharp.data\\5.0.2\\fsharp.data.5.0.2.nupkg.sha512",

@@ -3,6 +3,7 @@ namespace PortfolioOptimization
 open System
 open System.IO
 open FSharp.Data
+open SecuritiesTypes
 
 module SecuritiesAccess = 
 
@@ -11,16 +12,16 @@ module SecuritiesAccess =
     //     "East African Breweries Ltd Ord 2.00";"Equity Bank Ltd Ord 0.50";
     //     "Kenya Power Lighting Co Ltd Ord 20.00" ;"Co-operative Bank of Kenya Ltd Ord 1.00"
     //     |]
-    let getSecurities = 
-        [|"Accelerate Property Fund Limited"; "Deneb Investments Ltd";"British American Tobacco Plc";"Absa Group Limited";
-        "Dipula Income Fund B";"African Dawn Capital Ltd";"Capitec Bank Holdings Limited"|]
+    // let getSecurities = 
+    //     [|"Accelerate Property Fund Limited"; "Deneb Investments Ltd";"British American Tobacco Plc";"Absa Group Limited";
+    //     "Dipula Income Fund B";"African Dawn Capital Ltd";"Capitec Bank Holdings Limited"|]
 
-    let getSecuritiesData = 
+    let getSecuritiesData (securitiesList:Securities)  = 
 
-        let filePath = System.IO.Path.GetFullPath("StockPrices (1).csv")            
+        let filePath = System.IO.Path.GetFullPath("JohannesburgStockExchangeData.csv")            
         let equitiesPriceData = CsvFile.Load(filePath) 
 
-        let securities = getSecurities
+        let securities = securitiesList.Name
 
         let getSecurityData index  = 
             equitiesPriceData.Rows
