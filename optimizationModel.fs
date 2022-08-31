@@ -14,7 +14,7 @@ module OptimizationModel  =
     let meanVariancePortfolio (securitiesList:Securities) (startDate:string) (endDate:string)  = 
 
         let assetReturns = getSecuritiesData securitiesList startDate endDate
-        let securities = securitiesList.Name
+        let securities = securitiesList.Security
 
         if not <| (List.map  List.length assetReturns |> List.pairwise |> List.forall (fun (a,b) -> a = b))  then
             printfn "Asset Returns List of Lists has lengths of %A - All Lenghts Should be equal" (List.map List.length assetReturns) 
@@ -61,7 +61,7 @@ module OptimizationModel  =
         let srp = BfgsFindMinimum sharpRatio initialWeights
         let weights = Seq.map(fun x -> x/Seq.sum(srp))srp |> Seq.toList      
         //let outPut = List.zip (securities |> Array.toList) (weights |> List.map(fun x -> x * 100.0)) |> List.sortByDescending snd
-        let outPut = List.map2(fun x y ->  {Name = x ; weight = y}) (securities |> Array.toList) (weights |> List.map(fun x -> x * 100.0))
+        let outPut = List.map2(fun x y ->  {Security = x ; weight = y}) (securities |> Array.toList) (weights |> List.map(fun x -> x * 100.0))
         outPut
 
 

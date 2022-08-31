@@ -21,7 +21,7 @@ module SecuritiesAccess =
         let filePath = System.IO.Path.GetFullPath("JohannesburgStockExchangeData.csv")            
         let equitiesPriceData = CsvFile.Load(filePath) 
 
-        let securities = securitiesList.Name
+        let securities = securitiesList.Security
 
         let getSecurityData index  = 
             equitiesPriceData.Rows

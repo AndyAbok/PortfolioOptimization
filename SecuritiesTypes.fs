@@ -11,13 +11,13 @@ type Security =
     }
 
 type OptimizedWeights =
-    { Name : string
+    { Security : string
       weight : float
     }
 
 type Securities =
     {
-        Name : string array
+        Security : string array
     }
 
 
