@@ -14,7 +14,7 @@ type OptimizedWeights =
     { Security : string
       weight : float
     }
-
+[<CLIMutable>]
 type Securities =
     {
         Security : string array  
