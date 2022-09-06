@@ -11,10 +11,18 @@ open DataAccess
 
 module OptimizationModels  = 
 
-    let maximumSharpRatioPortfolio (securitiesList:Securities) (startDate:string) (endDate:string)  = 
+    let maximumSharpRatioPortfolio (securitiesList:Securities)   = 
 
-        let assetReturns = getSecuritiesData securitiesList startDate endDate
+        let startDate = securitiesList.startDate
+        let endDate = securitiesList.endDate
+
         let securities = securitiesList.Security
+            // match  securitiesList.Security with 
+            // |Some securitiesList -> securitiesList
+            // |None -> getSecurities startDate endDate
+
+        let assetReturns = getSecuritiesData securities startDate endDate
+        //let securities = securitiesList.Security
 
         if not <| (List.map  List.length assetReturns |> List.pairwise |> List.forall (fun (a,b) -> a = b))  then
             printfn "Asset Returns List of Lists has lengths of %A - All Lenghts Should be equal" (List.map List.length assetReturns) 

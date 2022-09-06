@@ -17,9 +17,9 @@ module DataAccess =
         |> Seq.distinct
         |> Seq.toArray
 
-    let getSecuritiesData (securitiesList:Securities) (startDate:string) (endDate:string) = 
+    let getSecuritiesData (securities:string array) (startDate:string) (endDate:string) = 
 
-        let securities = securitiesList.Security
+        //let securities = securitiesList.Security
 
         let getSecurityData index  = 
             equitiesPriceData.Rows
@@ -40,12 +40,16 @@ module DataAccess =
         let assetReturns = List.map(returnsFunction)priecesData
         assetReturns
 
-    let getInputData (securitiesList:Securities option) (startDate:string) (endDate:string)  = 
+    let getInputData (securitiesList:Securities) = 
 
-        let securities = 
-            match securitiesList with 
-            |Some securitiesList -> securitiesList.Security
-            |None -> getSecurities startDate endDate
+        let startDate = securitiesList.startDate
+        let endDate = securitiesList.endDate
+      
+        let securities = securitiesList.Security
+            // match  securitiesList.Security with 
+            // |Some securitiesList -> securitiesList
+            // |None -> getSecurities startDate endDate
+
 
         let getInputData index  = 
             equitiesPriceData.Rows
