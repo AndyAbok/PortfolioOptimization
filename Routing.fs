@@ -17,9 +17,14 @@ let getOptimizedSharpRaioPortfolio : HttpHandler   =
 
 let getInputData : HttpHandler   =
     fun (next : HttpFunc) (ctx : HttpContext) -> 
-        task {       
-              let! securitiesList = ctx.BindJsonAsync<Securities>()             
-              let inputDataList = getInputData securitiesList  
+        task {                      
+              let! input = ctx.BindJsonAsync<Securities>()  
+              let withSecurities =
+                    if Array.isEmpty input.Security then
+                        { input with Securities.Security = getSecurities input.startDate input.endDate }
+                    else
+                        input        
+              let inputDataList = getInputData withSecurities  
               return! json inputDataList next ctx
         }
 
