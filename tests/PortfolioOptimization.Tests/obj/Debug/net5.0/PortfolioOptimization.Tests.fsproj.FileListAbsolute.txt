@@ -123,3 +123,8 @@ E:\git hub repo\PortfolioOptimization\tests\PortfolioOptimization.Tests\obj\Debu
 E:\git hub repo\PortfolioOptimization\tests\PortfolioOptimization.Tests\obj\Debug\net5.0\PortfolioOptimization.Tests.dll
 E:\git hub repo\PortfolioOptimization\tests\PortfolioOptimization.Tests\obj\Debug\net5.0\PortfolioOptimization.Tests.pdb
 E:\git hub repo\PortfolioOptimization\tests\PortfolioOptimization.Tests\obj\Debug\net5.0\PortfolioOptimization.Tests.genruntimeconfig.cache
+E:\git hub repo\PortfolioOptimization\tests\PortfolioOptimization.Tests\bin\Debug\net5.0\FSharp.Data.dll
+E:\git hub repo\PortfolioOptimization\tests\PortfolioOptimization.Tests\bin\Debug\net5.0\MathNet.Numerics.dll
+E:\git hub repo\PortfolioOptimization\tests\PortfolioOptimization.Tests\bin\Debug\net5.0\MathNet.Numerics.FSharp.dll
+E:\git hub repo\PortfolioOptimization\tests\PortfolioOptimization.Tests\bin\Debug\net5.0\FsUnit.NUnit.dll
+E:\git hub repo\PortfolioOptimization\tests\PortfolioOptimization.Tests\bin\Debug\net5.0\nunit.framework.dll
