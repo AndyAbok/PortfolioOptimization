@@ -32,9 +32,13 @@ let routes: HttpFunc -> HttpFunc =
     choose [
         GET >=>
             choose [
-                route "/api/portfolioOptim" >=> getOptimizedSharpRaioPortfolio
+                //route "/api/portfolioOptimModelOutput" >=> getOptimizedSharpRaioPortfolio
                 route "/api/portfolioOptimInputData" >=> getInputData             
                 route "/" >=> text "hello"
+            ]
+        POST >=> 
+            choose [
+                 route "/api/portfolioOptimModelOutput"  >=> getOptimizedSharpRaioPortfolio                
             ]
             setStatusCode 404 >=> text "Not Found"]
 
