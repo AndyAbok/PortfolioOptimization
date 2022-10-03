@@ -12,17 +12,23 @@ open Microsoft.AspNetCore.TestHost
 open Microsoft.Extensions.DependencyInjection
 open PortfolioOptimization
 open DataAccess 
+open SecuritiesTypes
 
 module DataAccessTests = 
-
+    
     [<Fact>]
     let ``getAll should not return empty result``() = 
-        let securities = [| "British American Tobacco Plc";"Absa Group Limited"|]
+        let inputData = 
+            {
+                startDate="2022-09-08"
+                endDate="2022-09-10"
+                Security = [| "British American Tobacco Plc";"Absa Group Limited"|]
+            }      
         let expected =  
                   [[ 699.3];
                    [182.58]]
 
-        let actual = getSecuritiesData securities "2022-09-08"  "2022-09-10"
-        actual |> List.map(fun lst ->  lst |> List.mapi(fun i value -> Math.Round(value,4))) |> should equal expected
+        let actual = getInputData inputData   //getSecuritiesData securities "2022-09-08"  "2022-09-10"
+        actual.Prices |> Array.toList |> List.map(fun lst ->  lst |> List.mapi(fun i value -> Math.Round(value,2))) |> should equal expected
 
 
